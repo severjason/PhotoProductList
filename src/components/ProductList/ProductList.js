@@ -4,6 +4,7 @@ import { productActions } from '../../actions/productActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { productReducer } from '../../reducers/productReducer';
+import store from '../../store';
 
 class ProductList extends Component {
   constructor(props) {
@@ -23,8 +24,9 @@ class ProductList extends Component {
   }
 
   componentDidMount() {
-    this.props.loadProductList();
-    this.reLoadProductPage();
+    this.props.loadProductList().then(() => {
+      this.reLoadProductPage();
+    });
   }
 
   handlePageSizeTo8() {
@@ -125,6 +127,7 @@ class ProductList extends Component {
         <div className="listing_content">
           {currentProductList.map(item => (
             <ProductCard
+              key={item.id}
               price={item.price}
               image={item.product_image}
               name={item.product_name}

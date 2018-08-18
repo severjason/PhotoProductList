@@ -8,7 +8,7 @@ export const productActions = {
 
 function loadProductList() {
   return dispatch => {
-    productService.loadProductList().then(response => {
+    return productService.loadProductList().then(response => {
       let productList = response;
       dispatch({
         type: productConstants.LOAD_PRODUCT_LIST,
@@ -24,10 +24,6 @@ function loadCurrentPage(pageNumber = 1, pageSize = 24, productList) {
       (pageNumber - 1) * pageSize,
       pageNumber * pageSize
     );
-
-    console.log('00001=', productList);
-
-    console.log('00002=', currentPageList);
 
     dispatch({
       type: productConstants.LOAD_CURRENT_PAGE,
