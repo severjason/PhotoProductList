@@ -2,7 +2,8 @@ import { productService } from '../services/productService';
 import { productConstants } from '../constants/productConstants';
 
 export const productActions = {
-  loadProductList
+  loadProductList,
+  loadCurrentPage
 };
 
 function loadProductList() {
@@ -13,6 +14,24 @@ function loadProductList() {
         type: productConstants.LOAD_PRODUCT_LIST,
         productList
       });
+    });
+  };
+}
+
+function loadCurrentPage(pageNumber = 1, pageSize = 24, productList) {
+  return dispatch => {
+    let currentPageList = productList.slice(
+      (pageNumber - 1) * pageSize,
+      pageNumber * pageSize
+    );
+
+    console.log('00001=', productList);
+
+    console.log('00002=', currentPageList);
+
+    dispatch({
+      type: productConstants.LOAD_CURRENT_PAGE,
+      productList: currentPageList
     });
   };
 }

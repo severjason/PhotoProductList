@@ -3,15 +3,16 @@ import { productConstants } from '../constants/productConstants';
 const initialState = {
   loading: true,
   productCount: '',
-  productList: []
+  productList: [],
+  currentPageProductList: []
 };
 
 export function productReducer(state = initialState, action) {
   switch (action.type) {
-    case 'LOAD_PRODUCT_COUNT':
+    case productConstants.LOAD_CURRENT_PAGE:
       return {
         ...state,
-        productCount: action.productCount,
+        currentPageProductList: action.productList,
         loading: false
       };
 
