@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 import ProductCard from '../ProductCard/ProductCard';
+import { productActions } from '../../actions/productActions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class ProductList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      productList: []
+    };
+  }
+
+  componentDidMount() {
+    //fetch the first page
+    this.props.loadProductList();
+  }
+
   render() {
     return (
       <div className="productListing">
@@ -62,5 +78,16 @@ class ProductList extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    { loadProductList: productActions.loadProductList },
+    dispatch
+  );
+
+ProductList = connect(
+  null,
+  mapDispatchToProps
+)(ProductList);
 
 export default ProductList;

@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import './ProductCard.css';
 
 class ProductCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      productList: []
+    };
+  }
+
+  componentDidMount() {
+    //fetch the first page
+  }
+
   render() {
     return (
       <div className="listing_content__element">
