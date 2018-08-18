@@ -2,7 +2,6 @@ import { productConstants } from '../constants/productConstants';
 
 const initialState = {
   loading: true,
-  productCount: '',
   productList: [],
   currentPageProductList: []
 };

@@ -10,10 +10,6 @@ class ProductCard extends Component {
     };
   }
 
-  componentDidMount() {
-    //fetch the first page
-  }
-
   render() {
     const { price, image, name, description } = this.props;
     return (

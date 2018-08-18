@@ -3,8 +3,6 @@ import ProductCard from '../ProductCard/ProductCard';
 import { productActions } from '../../actions/productActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { productReducer } from '../../reducers/productReducer';
-import store from '../../store';
 
 class ProductList extends Component {
   constructor(props) {
@@ -64,6 +62,12 @@ class ProductList extends Component {
     );
   }
 
+  handleFirstPageNumberClick() {}
+
+  handleSecondPageNumberClick() {}
+
+  handleThirdPageNumberClick() {}
+
   handleNextPageClick() {
     let currentPageNumber = this.state.pageNumber;
     this.setState(
@@ -85,7 +89,6 @@ class ProductList extends Component {
   }
 
   reLoadProductPage() {
-    console.log('this.state=', this.state);
     this.props.loadCurrentPage(
       this.state.pageNumber,
       this.state.pageSize,
@@ -96,7 +99,6 @@ class ProductList extends Component {
   render() {
     const { productList, currentProductList } = this.props;
     const { pageNumber, pageSize } = this.state;
-    console.log('currentProductLlist=', currentProductList);
     return (
       <div className="productListing">
         <div className="listing_header">
@@ -134,29 +136,30 @@ class ProductList extends Component {
               description={item.description}
             />
           ))}
-
-          {/*           <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard /> */}
         </div>
 
         <div className="listing_navigation">
           <a
             href="#"
-            className="listing_navigation__disabled"
+            className={pageNumber === 1 ? 'listing_navigation__disabled' : ''}
             onClick={this.handlePreviousPageClick}
           >
             Previous page{' '}
           </a>
-          <a href="#" className="listing_navigation__active">
-            1
+          <a
+            href="#"
+            className="listing_navigation__active"
+            onClick={this.handleFirstPageNumberClick}
+          >
+            {pageNumber}
           </a>
-          <a href="#">2</a>
-          <a href="#">3</a>
+          <a href="#" onClick={this.handleSecondPageNumberClick}>
+            {' '}
+            {pageNumber + 1}
+          </a>
+          <a href="#" onClick={this.handleThirdPageNumberClick}>
+            {pageNumber + 2}
+          </a>
           <a href="#" onClick={this.handleNextPageClick}>
             Next page &gt;
           </a>
