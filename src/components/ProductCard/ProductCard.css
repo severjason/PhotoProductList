@@ -39,6 +39,11 @@
   -ms-flex-pack: center;
   justify-content: center;
   padding: 15px;
+  height: 400px;
+}
+.listing_content__element-img img {
+  max-height: 100%;
+  max-width: 100%;
 }
 .listing_content__element-description {
   margin: 15px;
